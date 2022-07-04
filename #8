@@ -1,0 +1,39 @@
+def schitivanie(n):
+# Создаем массив из нулевых эл-ов
+    mtrx = [[] * n] * n
+    sum = 0
+    for i in range(n):
+# Считывается n-ая строка из файла
+        s = fin.readline()
+        s = list(map(int, s.split()))
+        mtrx[i] = s
+        for j in range(n):
+            sum += mtrx[i][j]
+# Создание матрицы
+    for i in range(n - 1):
+        mtrx[i][n - 1] = sum
+        mtrx[n - 1][i] = sum
+    mtrx[n - 1][n - 1] = sum
+    return mtrx	
+
+otkr = input("Введите имя входного файла:")
+zakr = input("Введите имя выходного файла:")
+fin = open(otkr, "r")
+fout = open(zakr, "w")
+# Считывание элементов
+n = int(fin.readline())
+while n != 0:
+    mtrx = schitivanie(n)
+    for i in range(n):
+        ff1 = ""
+        for j in mtrx[i]:
+            ff1 += str(j) + " "
+        ff1 += "\n"
+        fout.write(ff1)
+    fout.write("\n")
+    print()
+    n = int(fin.readline())
+
+fin.close()
+fout.close()
+print(f"Обработка файла '{otkr}' закончена, результат в файле'{zakr}'")
