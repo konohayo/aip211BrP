@@ -1,0 +1,22 @@
+d = {}
+a = set()
+s = input()
+while s != "0":
+    s = list(s.split())
+    if s[0] in a:
+        d[s[0]] += int(s[1])
+    else:
+        a.add(s[0])
+        d[s[0]] = int(s[1])
+    s = input()
+
+for i in range(3):
+    maax = 0
+    name_of_max = ""
+    for lettmego in a:
+        if int(d[lettmego]) > maax:
+            maax = int(d[lettmego])
+            name_of_max = lettmego
+    print("на ", i + 1, "месте игрок: ", name_of_max, ", который получил максимум ", maax, "очков")
+    a.remove(name_of_max)
+
